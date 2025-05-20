@@ -56,7 +56,7 @@
         }
 
         .banner {
-            background-image: url('https://example.com/your-banner.jpg'); /* 실제 배너 이미지 경로로 교체 */
+            background-image: url('https://example.com/your-banner.jpg'); /* 실제 배너 이미지 URL로 교체 */
             background-size: cover;
             height: 400px;
             display: flex;
@@ -122,11 +122,11 @@
     <header>Lovely shop</header>
 
     <nav>
-        <a onclick="showPage('home')">홈</a>
-        <a onclick="showPage('new')">신상품</a>
-        <a onclick="showPage('best')">베스트</a>
-        <a onclick="showPage('event')">이벤트</a>
-        <a onclick="showPage('contact')">고객센터</a>
+        <a href="#" onclick="showPage(event, 'home')">홈</a>
+        <a href="#" onclick="showPage(event, 'new')">신상품</a>
+        <a href="#" onclick="showPage(event, 'best')">베스트</a>
+        <a href="#" onclick="showPage(event, 'event')">이벤트</a>
+        <a href="#" onclick="showPage(event, 'contact')">고객센터</a>
     </nav>
 
     <div class="banner">
@@ -138,7 +138,7 @@
         <p>Lovely shop에 오신 걸 환영합니다! 💖</p>
         <section class="products">
             <div class="product">
-                <img src="https://shop1.phinf.naver.net/20230517_252/1684293901645BEoVf_JPEG/576790918927819_1529080513.jpg" alt="핑크 원피스" />
+                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20240625_228%2F1719286455171dd8HJ_JPEG%2F9561437012415297_855462996.JPG&type=sc960_832" alt="핑크 원피스" />
                 <h3>핑크 원피스</h3>
                 <p>₩39,000</p>
             </div>
@@ -172,7 +172,7 @@
         <p>가장 인기 있는 상품을 소개합니다! 💖</p>
         <section class="products">
             <div class="product">
-                <img src="https://shop1.phinf.naver.net/20230517_252/1684293901645BEoVf_JPEG/576790918927819_1529080513.jpg" alt="핑크 원피스" />
+                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20240625_228%2F1719286455171dd8HJ_JPEG%2F9561437012415297_855462996.JPG&type=sc960_832" alt="핑크 원피스" />
                 <h3>핑크 원피스</h3>
                 <p>₩39,000</p>
             </div>
@@ -194,7 +194,8 @@
     </footer>
 
     <script>
-        function showPage(pageId) {
+        function showPage(event, pageId) {
+            event.preventDefault(); // 기본 동작 방지
             const contents = document.querySelectorAll('.content');
             contents.forEach(content => content.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
