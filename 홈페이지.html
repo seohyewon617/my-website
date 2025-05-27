@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lovely shop - 싱글 페이지</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #fbe6e8;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #ff77a9;
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            background-color: #ffe4e1;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #d36b9a;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff77a9;
+        }
+
+        .content {
+            display: none;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .banner {
+            background-image: url('https://example.com/your-banner.jpg'); /* 실제 배너 이미지 경로로 교체 */
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+            margin-top: 30px;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            width: 250px;
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product h3 {
+            font-size: 1.4em;
+            color: #d36b9a;
+        }
+
+        .product p {
+            color: #888;
+            font-size: 1.1em;
+        }
+
+        footer {
+            background-color: #ffe4e1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #d36b9a;
+        }
+
+        /* 모달 스타일 */
+        #sizeModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        #sizeModal .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px 30px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #sizeSelect {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #sizeModal button {
+            background-color: #ff77a9;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #sizeModal button:hover {
+            background-color: #d36b9a;
+        }
+
+        #sizeModal button:last-child {
+            background-color: #ddd;
+            color: #333;
+            margin-left: 10px;
+        }
+
+        #sizeModal button:last-child:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <header>Lovely shop</header>
+
+    <nav>
+        <a onclick="showPage('home')">홈</a>
+        <a onclick="showPage('new')">신상품</a>
+        <a onclick="showPage('best')">베스트</a>
+        <a onclick="showPage('event')">이벤트</a>
+        <a onclick="showPage('contact')">고객센터</a>
+    </nav>
+
+    <div class="banner">
+        지금, 여름 신상 최대 30% 할인! 🌸
+    </div>
+
+    <div id="home" class="content active">
+        <h2>홈</h2>
+        <p>Lovely shop에 오신 걸 환영합니다! 💖</p>
+        <section class="products">
+            <div class="product" onclick="openSizeModal('핑크 원피스')">
+                <img src="https://shop1.phinf.naver.net/20230517_252/1684293901645BEoVf_JPEG/576790918927819_1529080513.jpg" alt="핑크 원피스" />
+                <h3>핑크 원피스</h3>
+                <p>₩39,000</p>
+            </div>
+            <div class="product" onclick="openSizeModal('레이스 블라우스')">
+                <img src="https://shopping-phinf.pstatic.net/main_4581874/45818742015.jpg" alt="레이스 블라우스" />
+                <h3>레이스 블라우스</h3>
+                <p>₩29,000</p>
+            </div>
+            <div class="product" onclick="openSizeModal('핑크 블라우스')">
+                <img src="https://shopping-phinf.pstatic.net/main_8636118/86361180447.jpg" alt="핑크 블라우스" />
+                <h3>핑크 블라우스</h3>
+                <p>₩29,000</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="new" class="content">
+        <h2>신상품</h2>
+        <p>새로운 상품을 만나보세요! 🌷</p>
+        <section class="products">
+            <div class="product" onclick="openSizeModal('블루 플라워 원피스')">
+                <img src="https://shopping-phinf.pstatic.net/main_4653565/46535651423.3.jpg" alt="블루 원피스" />
+                <h3>블루 플라워 원피스</h3>
+                <p>₩35,000</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="best" class="content">
+        <h2>베스트</h2>
+        <p>가장 인기 있는 상품을 소개합니다! 💖</p>
+        <section class="products">
+            <div class="product" onclick="openSizeModal('핑크 원피스')">
+                <img src="https://shop1.phinf.naver.net/20230517_252/1684293901645BEoVf_JPEG/576790918927819_1529080513.jpg" alt="핑크 원피스" />
+                <h3>핑크 원피스</h3>
+                <p>₩39,000</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="event" class="content">
+        <h2>이벤트</h2>
+        <p>지금 진행 중인 특별 이벤트를 확인하세요! 🎉</p>
+    </div>
+
+    <div id="contact" class="content">
+        <h2>고객센터</h2>
+        <p>문의사항은 lovely@shop.com 으로 보내주세요 💌</p>
+    </div>
+
+    <footer>
+        ⓒ 2025 Lovely shop. All rights reserved.
+    </footer>
+
+    <!-- 사이즈 선택 모달 -->
+    <div id="sizeModal">
+        <div class="modal-content">
+            <h3>사이즈 선택</h3>
+            <p id="selectedProductName" style="font-weight:bold; color:#d36b9a; margin-bottom:10px;"></p>
+            <select id="sizeSelect">
+                <option value="">사이즈 선택</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            <button onclick="buyProduct()">장바구니 담기</button>
+            <button onclick="closeModal()" style="margin-left: 10px; background-color: #ddd; color: #333;">닫기</button>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function openSizeModal(productName) {
+            document.getElementById('selectedProductName').textContent = productName;
+            document.getElementById('sizeSelect').value = '';
+            document.getElementById('sizeModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('sizeModal').style.display = 'none';
+        }
+
+        function buyProduct() {
+            const size = document.getElementById('sizeSelect').value;
+            const productName = document.getElementById('selectedProductName').textContent;
+            if (!size) {
+                alert('사이즈를 선택해주세요!');
+                return;
+            }
+            alert(`${productName} (${size}) 장바구니에 담겼습니다! 감사합니다 😊`);
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>
